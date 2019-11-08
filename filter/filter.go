@@ -11,7 +11,7 @@ import (
 
 const tagGroupTitle = "group-title"
 
-func FilterByGroupNames(uri string, groupList []string) ([]m3u.Track, error) {
+func FilterByGroupNames(uri string, groupList []string, filterByExclusion bool) ([]m3u.Track, error) {
 	groupMap := make(map[string]bool)
 	for _, g := range groupList {
 		groupMap[g] = true
@@ -24,7 +24,8 @@ func FilterByGroupNames(uri string, groupList []string) ([]m3u.Track, error) {
 	for _, track := range playlist.Tracks {
 		for _, tag := range track.Tags {
 			if strings.ToLower(tag.Name) == tagGroupTitle {
-				if _, inSelectedGroups := groupMap[tag.Value]; inSelectedGroups {
+				_, inFilterGroups := groupMap[tag.Value]
+				if (inFilterGroups && !filterByExclusion) || (!inFilterGroups && filterByExclusion) {
 					selected = append(selected, track)
 				}
 			}

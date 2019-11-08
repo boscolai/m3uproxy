@@ -6,6 +6,7 @@ accounts:
    test1:
       m3u: http://somewhere.someplace/some_file.m3u
       epg: http://somewhere.someplace/some_file.epg
+      excludeGroups: false
       groups:
          - USA News
          - Canada News

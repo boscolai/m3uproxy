@@ -13,10 +13,11 @@ import (
 )
 
 type account struct {
-	ID     string
-	M3U    string
-	EPG    string
-	Groups []string
+	ID            string
+	M3U           string
+	EPG           string
+	ExcludeGroups bool
+	Groups        []string
 }
 
 var accountMap map[string]account
@@ -28,7 +29,7 @@ func HandleM3U(w http.ResponseWriter, req *http.Request) {
 	}
 
 	if len(acct.Groups) > 0 {
-		tracks, err := filter.FilterByGroupNames(acct.M3U, acct.Groups)
+		tracks, err := filter.FilterByGroupNames(acct.M3U, acct.Groups, acct.ExcludeGroups)
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
 			fmt.Fprintf(w, "group filtering failed: %s\n", err)
