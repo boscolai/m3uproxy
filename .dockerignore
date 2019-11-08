@@ -1,0 +1,4 @@
+# skip copying these for building images
+.git
+vendor/
+localdata/

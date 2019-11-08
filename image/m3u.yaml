@@ -1,0 +1,12 @@
+
+server:
+   bind_address: ":8080"
+
+accounts:
+   test1:
+      m3u: http://somewhere.someplace/some_file.m3u
+      epg: http://somewhere.someplace/some_file.epg
+      groups:
+         - USA News
+         - Canada News
+
