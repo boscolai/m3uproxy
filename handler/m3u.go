@@ -80,9 +80,15 @@ func getUserAccount(w http.ResponseWriter, req *http.Request) *account {
 		return nil
 	}
 
+	accountID := viper.GetString("users." + user)
+	if accountID == "" {
+		w.WriteHeader(http.StatusForbidden)
+		return nil
+	}
+
 	var acct account
 	var exists bool
-	if acct, exists = accountMap[user]; !exists {
+	if acct, exists = accountMap[accountID]; !exists {
 		w.WriteHeader(http.StatusForbidden)
 		return nil
 	}

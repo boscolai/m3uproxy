@@ -11,3 +11,13 @@ accounts:
          - USA News
          - Canada News
 
+   test1_full:
+      m3u: http://somewhere.someplace/some_file.m3u
+      epg: http://somewhere.someplace/some_file.epg
+
+
+users:
+   joe: test1
+   jack: test1
+   ken: test1_full
+
