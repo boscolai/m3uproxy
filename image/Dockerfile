@@ -25,6 +25,7 @@ FROM alpine
 ENV    TZ=America/Toronto
 ENV    CONFIG=/config/m3u.yaml
 
+RUN apk add tzdata
 RUN mkdir -p /config
 
 COPY   --from=builder /output/m3uproxy /usr/local/bin
